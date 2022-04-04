@@ -11,6 +11,8 @@ import {makeStyles} from "@material-ui/core"
 import { Theme } from '@mui/material';
 import { Container } from '@material-ui/core';
 import BookStore, { BookStoreProvider }  from './store/BookStore'; 
+import BookItem from './component/pages/BookItem';
+import F404 from './component/pages/F404';
 
 const useStyles = makeStyles((theme) => ({
    root: {
@@ -37,6 +39,17 @@ function App() {
             <Route path="/books"  exact={true}>      
                <BookList />
             </Route>
+            <Route path="/books/:id"  >      
+               <BookItem />
+            </Route>
+            {/* <Route
+                path="*"
+                >
+                   <F404 />
+                   </Route>
+          */}
+              
+   
          </Switch>
         </Container>
     </React.Fragment>

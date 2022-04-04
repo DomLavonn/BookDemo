@@ -4,7 +4,7 @@ import BookCard from "./ui/BookCard"
 import NavBar from "./layout/NavBar"
 import classes from "./MainLayout.module.css"
 import BookStore from "../store/BookStore"
-
+import { Link } from "react-router-dom"
 const MainLayout:React.FC<{}> = (props) => {
 
 
@@ -15,7 +15,9 @@ const MainLayout:React.FC<{}> = (props) => {
         <Container>
           <Grid    container spacing={5}>
             {bookCtx.arr.map(item => {
-              return <BookCard  name={item.getName()}  quantity={item.getQuantity()}  price={item.getPrice()}  img={item.getImg()}/>
+              return <Link to={`/books/${item.getId()}`}  >
+                <BookCard  id={item.getId()} onClicks={bookCtx.changeBookName} name={item.getName()}  quantity={item.getQuantity()}  price={item.getPrice()}  img={item.getImg()}/>
+                </Link>
             })}
           </Grid>
         </Container>

@@ -2,8 +2,11 @@ import React, {useState} from "react";
 import Book from "../models/Book";
 
 type ABook = {
-     arr: Book[]
-     
+     arr: Book[],
+     changeBookName: ( id: number ) => void
+     changeLogin:() => void,
+     isLoggedIn: boolean
+
     //  id: number;
     //  name: string;
     //  img: string;
@@ -13,7 +16,10 @@ type ABook = {
 
 // Book context
 const BookStore = React.createContext<ABook>({
-     arr: []
+     arr: [],
+     changeBookName: () => {},
+     changeLogin:() =>{},
+     isLoggedIn: false
 
 })
 
@@ -29,9 +35,38 @@ export const BookStoreProvider:React.FC = (props) => {
 
 
     const [arr, setArr] = useState<Book[]>(bdArr)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const ChangeNameHandler = (id: number) => {
+           
+        setArr( (prevState) => {
+             return prevState.filter( item => item.getId() == id)
+        } )
+
+        //    setArr( (prevState) => {
+        //          prevState.map(item  => { if (item.getId() == prevState[id].getId() ){
+        //                     item.setName("Changed from function ")
+        //            }
+        //            }
+                    
+        //        )
+        //    }
+        //    )
+
+        }
+    
+        const changeLog = ()=> {
+            setIsLoggedIn(true)
+        }
+        
+        
+    
+
 
     let bookCtx:ABook = {
-        arr: arr
+        arr: arr,
+        changeBookName: ChangeNameHandler,
+        changeLogin: changeLog,
+        isLoggedIn: isLoggedIn
     }
 
     return <BookStore.Provider value={bookCtx}>

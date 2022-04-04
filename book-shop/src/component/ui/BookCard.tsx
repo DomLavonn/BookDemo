@@ -1,19 +1,30 @@
 import Paper from '@mui/material/Paper'
 import { Grid } from "@mui/material"
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import { Typography, Box, Rating } from '@mui/material'
 import  {AccessTime} from '@mui/icons-material'
  
 type BookA = {
+     id: number
      name: string;
      img: string;
      quantity: number;
      price: number;
+     onClicks:  (id:number) => void
 
 }
 const BookCard:React.FC<BookA> = (props) => {
 
-    return <Grid item xs={3}> 
+    const callMe = (  id:number ) => {
+          console.log(props.id)
+          props.onClicks(props.id)
+    }
+
+    return <div >
+
+{/* onClick={ () => callMe(props.id)} */}
+
+    <Grid item xs={3} > 
               <Paper elevation={3} >
 
                   <img style={{ 
@@ -50,7 +61,7 @@ const BookCard:React.FC<BookA> = (props) => {
                       
               </Paper>
            </Grid>
-    
+           </div>
 }
 
 
