@@ -14,7 +14,7 @@ class Book {
         this.price = price
     }
 
-    
+
     public getId(): number
  {
         return this.id;
@@ -64,11 +64,6 @@ class Book {
 ) {
         this.price = price;
     }
-
-
-
-
-
 }
 
 
